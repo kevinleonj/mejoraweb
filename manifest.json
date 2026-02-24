@@ -1,0 +1,12 @@
+{
+  "name": "mejoraweb",
+  "short_name": "mejoraweb",
+  "description": "Auditoria, rediseno y optimizacion web para negocios en Espana",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#09090b",
+  "theme_color": "#09090b",
+  "lang": "es",
+  "orientation": "any",
+  "categories": ["business", "productivity"]
+}
