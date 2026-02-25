@@ -1,16 +1,61 @@
-# React + Vite
+# mejoraweb
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Landing page for mejoraweb — auditoría técnica, rediseño y optimización web
+para negocios locales en España.
 
-Currently, two official plugins are available:
+Live: https://mejoraweb.app
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Stack
 
-## React Compiler
+- React 18 + Vite 7
+- Vanilla CSS (diseño minimalista escandinavo)
+- Three.js — fluid simulation background (LiquidEther)
+- Azure Static Web Apps — hosting y CI/CD
+- GitHub Actions — deploy automático en push a main
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Structure
 
-## Expanding the ESLint configuration
+mejoraweb/
+├── public/                  # Static assets (manifest, robots, sitemap)
+├── src/
+│   ├── components/
+│   │   └── LiquidEther/     # WebGL fluid simulation background
+│   │       ├── LiquidEther.jsx
+│   │       └── LiquidEther.css
+│   ├── css/
+│   │   └── style.css        # Global styles
+│   ├── App.jsx              # Main component — full site content
+│   └── main.jsx             # Entry point
+├── .github/
+│   └── workflows/
+│       └── azure-static-web-apps.yml  # CI/CD pipeline
+├── index.html               # Vite HTML shell + SEO meta tags
+└── staticwebapp.config.json # Azure SWA routing, headers, cache rules
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+
+## Local Development
+```bash
+npm install
+npm run dev
+```
+
+Opens at http://localhost:5173
+
+## Build
+```bash
+npm run build
+```
+
+Output goes to `dist/`. Azure handles this automatically on push.
+
+## Deploy
+
+Pushes to `main` trigger automatic deployment via GitHub Actions to Azure
+Static Web Apps. No manual steps required.
+
+## Authors
+
+- Kevin Leon — Engineering & Design (https://www.linkedin.com/in/kevinleonj/)
+- Andres Ramirez — Strategy, Technology & Business
+
+Instituto de Empresa, Madrid.
