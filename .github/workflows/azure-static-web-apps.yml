@@ -23,7 +23,7 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: upload
           app_location: "/"
-          output_location: "dist"
+          output_location: ""
           app_build_command: "npm run build"
 
   close_pull_request:
