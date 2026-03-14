@@ -1,0 +1,253 @@
+{
+  "lang": "es",
+  "header": {
+    "services": "Servicios",
+    "process": "Proceso",
+    "team": "Equipo",
+    "contact": "Contacto",
+    "cta": "Solicitar auditoría",
+    "openMenu": "Abrir menú",
+    "closeMenu": "Cerrar menú"
+  },
+  "hero": {
+    "kicker": "Auditoría y rediseño web profesional",
+    "line1": "El 73% de los consumidores",
+    "line2": "juzga la credibilidad de un negocio",
+    "line3": "por el diseño de su web",
+    "sub": "Analizamos tu web actual. Identificamos cada problema. La reconstruimos con principios de diseño escandinavo para que trabaje por tu negocio, no en su contra."
+  },
+  "problems": {
+    "label": "El problema",
+    "heading": "Tu web trabaja contra ti",
+    "text": "Cada día, clientes potenciales buscan tu negocio en Google. Encuentran tu web. Y en menos de tres segundos, deciden si confían en ti o eligen a tu competencia.",
+    "cards": [
+      {
+        "stat": "40%",
+        "title": "Sin versión móvil",
+        "desc": "Más de la mitad del tráfico web en España viene del móvil. Una web que no se adapta a pantallas pequeñas pierde la mayoría de sus visitas antes de cargar."
+      },
+      {
+        "stat": "53%",
+        "title": "Carga lenta",
+        "desc": "Si tu web tarda más de tres segundos en cargar, más de la mitad de los visitantes la abandona. Google penaliza las webs lentas en sus resultados de búsqueda."
+      },
+      {
+        "stat": "84%",
+        "title": "Sin certificado SSL",
+        "desc": "Los navegadores marcan como «No seguro» las webs sin SSL. El 84% de los usuarios abandona una compra si percibe que el sitio no es seguro."
+      },
+      {
+        "stat": "94%",
+        "title": "Diseño desactualizado",
+        "desc": "Las primeras impresiones son casi enteramente de diseño. El 94% de las razones por las que los usuarios desconfían de una web están relacionadas con su aspecto visual."
+      }
+    ]
+  },
+  "services": {
+    "label": "El servicio",
+    "heading": "Rediseño web integral",
+    "text": "No construimos páginas web. Reconstruimos la presencia digital de tu negocio desde los cimientos.",
+    "items": [
+      {
+        "title": "Auditoría técnica completa",
+        "desc": "Analizamos más de 40 puntos técnicos de tu web actual: rendimiento, seguridad, accesibilidad, SEO, compatibilidad móvil y experiencia de usuario. El diagnóstico es preciso. Sin ambigüedades."
+      },
+      {
+        "title": "Diseño funcional escandinavo",
+        "desc": "Aplicamos principios del diseño nórdico: claridad, funcionalidad y espacio. Cada elemento tiene un propósito. Lo que no aporta valor al usuario, no existe. El resultado es una web que comunica confianza desde el primer segundo."
+      },
+      {
+        "title": "Optimización para resultados",
+        "desc": "Una web rápida, segura y bien estructurada no es un lujo. Es el estándar mínimo que Google exige para posicionarte. Optimizamos para Core Web Vitals, motores de búsqueda clásicos y los nuevos motores de búsqueda con inteligencia artificial."
+      }
+    ]
+  },
+  "process": {
+    "label": "El proceso",
+    "heading": "Cuatro fases. Sin sorpresas.",
+    "text": "Cada proyecto sigue una metodología estructurada. Sabes qué ocurre en cada momento.",
+    "steps": [
+      {
+        "number": "01",
+        "title": "Auditoría",
+        "desc": "Evaluamos tu web actual con herramientas profesionales de análisis. Identificamos cada problema técnico y de diseño. Recibes un informe detallado con prioridades claras y métricas comparativas frente a tu competencia directa."
+      },
+      {
+        "number": "02",
+        "title": "Estrategia",
+        "desc": "Definimos la arquitectura de información, el contenido y la experiencia de usuario de tu nueva web. Cada decisión de diseño está respaldada por datos de uso real y mejores prácticas del sector."
+      },
+      {
+        "number": "03",
+        "title": "Diseño y desarrollo",
+        "desc": "Construimos tu web con tecnología moderna, optimizada para velocidad de carga y posicionamiento en buscadores. Diseño responsive que funciona con precisión en cualquier dispositivo, desde un móvil hasta una pantalla de escritorio."
+      },
+      {
+        "number": "04",
+        "title": "Lanzamiento",
+        "desc": "Migramos tu dominio, configuramos la seguridad y monitorizamos el rendimiento durante las primeras semanas. Tu nueva web está lista para trabajar por tu negocio desde el primer día."
+      }
+    ]
+  },
+  "team": {
+    "label": "El equipo",
+    "heading": "Un proyecto del Instituto de Empresa",
+    "text": "mejoraweb nace en el Instituto de Empresa, una de las escuelas de negocios más reconocidas de Europa. Combinamos rigor académico con ejecución técnica.",
+    "members": [
+      {
+        "name": "Kevin León",
+        "role": "Estrategia, tecnología y negocio",
+        "bio": "Ingeniero de software con sólida experiencia en entornos cloud y empresas tecnológicas de alto nivel. Especialista en arquitectura web, sistemas escalables y experiencia de usuario — diseña y despliega soluciones digitales robustas que combinan rendimiento, usabilidad y visión estratégica.",
+        "photo": "/team/KevinLeon.jpeg",
+        "linkedinUrl": "https://www.linkedin.com/in/kevinleonj/",
+        "linkedinLabel": "linkedin.com/in/kevinleonj"
+      },
+      {
+        "name": "Andrés Ramírez",
+        "role": "Ingeniería y diseño",
+        "bio": "Estratega tecnológico con enfoque en crecimiento digital y transformación para PYMEs. Combina análisis técnico, desarrollo de software e implementación de IA para convertir diagnósticos digitales en sistemas y productos que generan impacto medible.",
+        "photo": "/team/AndresRamirez.jpg",
+        "linkedinUrl": "",
+        "linkedinLabel": "LinkedIn"
+      }
+    ]
+  },
+  "contact": {
+    "label": "Contacto",
+    "heading": "Hablemos de tu web",
+    "text": "Cuéntanos tu situación. Analizamos tu web sin coste y te enviamos un diagnóstico inicial en 48 horas.",
+    "name": "Nombre",
+    "namePlaceholder": "Tu nombre",
+    "email": "Correo electrónico",
+    "emailPlaceholder": "tu@email.com",
+    "message": "Mensaje",
+    "messagePlaceholder": "Cuéntanos sobre tu web, tu negocio y qué quieres mejorar...",
+    "submit": "Enviar mensaje",
+    "sending": "Enviando...",
+    "successTitle": "Mensaje enviado. Nos pondremos en contacto contigo en breve.",
+    "errorText": "Algo salió mal. Por favor, inténtalo de nuevo o escríbenos directamente a info@limeralda.com.",
+    "nameRequired": "El nombre es obligatorio",
+    "emailRequired": "El correo electrónico es obligatorio",
+    "emailInvalid": "El formato del correo no es válido",
+    "messageRequired": "El mensaje es obligatorio"
+  },
+  "footer": {
+    "tagline": "Auditoría, rediseño y optimización web para negocios en España.",
+    "navTitle": "Navegación",
+    "legalTitle": "Legal",
+    "services": "Servicios",
+    "process": "Proceso",
+    "team": "Equipo",
+    "contact": "Contacto",
+    "privacy": "Política de privacidad",
+    "terms": "Términos de servicio",
+    "cookies": "Configuración de cookies",
+    "copyright": "© {year} mejoraweb. Todos los derechos reservados.",
+    "byline": "mejoraweb by limeralda"
+  },
+  "cookie": {
+    "title": "Usamos cookies",
+    "text": "Utilizamos almacenamiento local para guardar tus preferencias de idioma y consentimiento. Sin cookies de seguimiento ni publicidad. Consulta nuestra",
+    "policyLink": "política de cookies",
+    "reject": "Rechazar",
+    "minimal": "Solo necesarias",
+    "acceptAll": "Aceptar todo",
+    "settingsTitle": "Configuración de cookies",
+    "currentStatus": "Estado actual",
+    "statusAccepted": "Aceptadas",
+    "statusMinimal": "Solo necesarias",
+    "statusRejected": "Rechazadas",
+    "storageTitle": "Qué almacenamos",
+    "storageItems": [
+      { "key": "mejoraweb-language", "label": "Preferencia de idioma", "note": "Siempre activo" },
+      { "key": "mejoraweb-cookie-consent", "label": "Consentimiento de cookies", "note": "Siempre activo" }
+    ],
+    "noTracking": "No utilizamos cookies de análisis ni publicidad de terceros.",
+    "viewPolicy": "Ver política de cookies completa"
+  },
+  "legal": {
+    "privacy": {
+      "title": "Política de privacidad",
+      "sections": [
+        {
+          "heading": "1. Responsable del tratamiento",
+          "body": "limeralda (en adelante, «el Responsable») es el responsable del tratamiento de los datos personales recogidos a través de mejoraweb.app. Contacto: info@limeralda.com."
+        },
+        {
+          "heading": "2. Datos que recogemos",
+          "body": "Únicamente recogemos los datos que nos facilitas voluntariamente a través del formulario de contacto: nombre, dirección de correo electrónico y mensaje. No recogemos datos de navegación ni instalamos cookies de seguimiento o publicidad."
+        },
+        {
+          "heading": "3. Finalidad y base jurídica",
+          "body": "Los datos se tratan con el fin de gestionar tu consulta y mantenernos en contacto contigo. La base jurídica es el interés legítimo del Responsable (art. 6.1.f del RGPD) en responder a comunicaciones comerciales y profesionales."
+        },
+        {
+          "heading": "4. Destinatarios",
+          "body": "Tus datos se transmiten a Resend (procesador de correo electrónico) y Google Workspace (alojamiento de correo), ambos sujetos a las Cláusulas Contractuales Estándar de la Comisión Europea, garantizando el cumplimiento del RGPD."
+        },
+        {
+          "heading": "5. Conservación de los datos",
+          "body": "Los datos del formulario de contacto se conservan durante un máximo de 12 meses desde la última comunicación, transcurridos los cuales se eliminan de forma segura."
+        },
+        {
+          "heading": "6. Tus derechos",
+          "body": "Tienes derecho a acceder, rectificar, suprimir, portar y oponerte al tratamiento de tus datos. Para ejercerlos, escríbenos a info@limeralda.com. También puedes presentar una reclamación ante la Agencia Española de Protección de Datos (aepd.es)."
+        },
+        {
+          "heading": "7. Almacenamiento local",
+          "body": "Esta web utiliza localStorage para guardar tu preferencia de idioma (clave: mejoraweb-language) y tu consentimiento de cookies (clave: mejoraweb-cookie-consent). Estos datos se almacenan únicamente en tu dispositivo y no se envían a ningún servidor."
+        }
+      ]
+    },
+    "terms": {
+      "title": "Términos de servicio",
+      "sections": [
+        {
+          "heading": "1. Objeto",
+          "body": "Los presentes Términos regulan el acceso y uso de mejoraweb.app, un servicio de auditoría, rediseño y optimización web prestado por limeralda, con domicilio en Madrid, España."
+        },
+        {
+          "heading": "2. Uso del servicio",
+          "body": "El acceso a este sitio web es libre y gratuito. Los servicios de auditoría y rediseño web son prestados por encargo, previa solicitud a través del formulario de contacto o por correo electrónico."
+        },
+        {
+          "heading": "3. Propiedad intelectual",
+          "body": "Todos los contenidos de este sitio web — textos, diseños, código y gráficos — son propiedad de limeralda y están protegidos por la legislación española e internacional sobre propiedad intelectual. Queda prohibida su reproducción sin autorización expresa."
+        },
+        {
+          "heading": "4. Exclusión de garantías",
+          "body": "El servicio se presta «tal cual». limeralda no garantiza la disponibilidad ininterrumpida del sitio web ni la ausencia de errores en su contenido."
+        },
+        {
+          "heading": "5. Limitación de responsabilidad",
+          "body": "limeralda no será responsable de los daños indirectos, pérdida de negocio o pérdida de datos derivados del uso de este sitio web o de los servicios contratados, salvo en los casos previstos por la ley."
+        },
+        {
+          "heading": "6. Legislación aplicable",
+          "body": "Estos Términos se rigen por la legislación española. Para cualquier controversia, las partes se someten a los juzgados y tribunales de Madrid, renunciando expresamente a cualquier otro fuero que pudiera corresponderles."
+        }
+      ]
+    },
+    "cookies": {
+      "title": "Política de cookies",
+      "sections": [
+        {
+          "heading": "1. ¿Qué son las cookies?",
+          "body": "Las cookies son pequeños ficheros que los sitios web almacenan en tu dispositivo. Este sitio web no utiliza cookies en sentido estricto, sino únicamente localStorage, una tecnología similar que almacena datos localmente en tu navegador sin enviarlos automáticamente al servidor."
+        },
+        {
+          "heading": "2. ¿Qué almacenamos?",
+          "body": "Utilizamos dos entradas de localStorage: «mejoraweb-language» para guardar tu preferencia de idioma (es o en), y «mejoraweb-cookie-consent» para guardar tu elección de consentimiento (accepted, minimal o rejected)."
+        },
+        {
+          "heading": "3. Sin cookies de terceros",
+          "body": "No instalamos cookies de Google Analytics, Meta Pixel ni ningún otro servicio de publicidad o seguimiento. Los únicos datos que salen de tu dispositivo son los que envías voluntariamente a través del formulario de contacto."
+        },
+        {
+          "heading": "4. Gestión de preferencias",
+          "body": "Puedes cambiar tu configuración en cualquier momento haciendo clic en «Configuración de cookies» en el pie de página. También puedes borrar el almacenamiento local desde los ajustes de privacidad de tu navegador."
+        }
+      ]
+    }
+  }
+}

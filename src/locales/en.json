@@ -1,0 +1,253 @@
+{
+  "lang": "en",
+  "header": {
+    "services": "Services",
+    "process": "Process",
+    "team": "Team",
+    "contact": "Contact",
+    "cta": "Request an audit",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
+  },
+  "hero": {
+    "kicker": "Professional web audit and redesign",
+    "line1": "73% of consumers",
+    "line2": "judge a business's credibility",
+    "line3": "by its website design",
+    "sub": "We audit your current website. We identify every problem. We rebuild it with Scandinavian design principles so it works for your business, not against it."
+  },
+  "problems": {
+    "label": "The problem",
+    "heading": "Your website is working against you",
+    "text": "Every day, potential customers search for your business on Google. They find your website. And in less than three seconds, they decide whether to trust you or choose your competitor.",
+    "cards": [
+      {
+        "stat": "40%",
+        "title": "No mobile version",
+        "desc": "More than half of web traffic in Spain comes from mobile devices. A website that doesn't adapt to small screens loses the majority of its visitors before it even loads."
+      },
+      {
+        "stat": "53%",
+        "title": "Slow loading",
+        "desc": "If your website takes more than three seconds to load, more than half of visitors will leave. Google penalises slow websites in its search results."
+      },
+      {
+        "stat": "84%",
+        "title": "No SSL certificate",
+        "desc": "Browsers mark websites without SSL as \"Not Secure\". 84% of users abandon a purchase if they feel the site is not secure."
+      },
+      {
+        "stat": "94%",
+        "title": "Outdated design",
+        "desc": "First impressions are almost entirely about design. 94% of the reasons why users distrust a website are related to its visual appearance."
+      }
+    ]
+  },
+  "services": {
+    "label": "The service",
+    "heading": "Full web redesign",
+    "text": "We don't build websites. We rebuild your business's digital presence from the ground up.",
+    "items": [
+      {
+        "title": "Complete technical audit",
+        "desc": "We analyse over 40 technical points of your current website: performance, security, accessibility, SEO, mobile compatibility and user experience. The diagnosis is precise. No ambiguity."
+      },
+      {
+        "title": "Scandinavian functional design",
+        "desc": "We apply Nordic design principles: clarity, functionality and space. Every element has a purpose. What doesn't add value to the user doesn't exist. The result is a website that communicates trust from the very first second."
+      },
+      {
+        "title": "Optimised for results",
+        "desc": "A fast, secure and well-structured website is not a luxury. It is the minimum standard Google requires to rank you. We optimise for Core Web Vitals, classic search engines and the new AI-powered search engines."
+      }
+    ]
+  },
+  "process": {
+    "label": "The process",
+    "heading": "Four phases. No surprises.",
+    "text": "Every project follows a structured methodology. You know what happens at every step.",
+    "steps": [
+      {
+        "number": "01",
+        "title": "Audit",
+        "desc": "We evaluate your current website with professional analysis tools. We identify every technical and design problem. You receive a detailed report with clear priorities and comparative metrics against your direct competitors."
+      },
+      {
+        "number": "02",
+        "title": "Strategy",
+        "desc": "We define the information architecture, content and user experience of your new website. Every design decision is backed by real usage data and industry best practices."
+      },
+      {
+        "number": "03",
+        "title": "Design & Development",
+        "desc": "We build your website with modern technology, optimised for loading speed and search engine ranking. Responsive design that works precisely on any device, from a mobile to a desktop screen."
+      },
+      {
+        "number": "04",
+        "title": "Launch",
+        "desc": "We migrate your domain, configure security and monitor performance during the first few weeks. Your new website is ready to work for your business from day one."
+      }
+    ]
+  },
+  "team": {
+    "label": "The team",
+    "heading": "A project from IE Business School",
+    "text": "mejoraweb was born at IE Business School, one of the most recognised business schools in Europe. We combine academic rigour with technical execution.",
+    "members": [
+      {
+        "name": "Kevin León",
+        "role": "Strategy, Technology & Business",
+        "bio": "Software engineer with solid experience in cloud environments and high-profile technology companies. Specialist in web architecture, scalable systems and user experience — designing and deploying robust digital solutions that combine performance, usability and strategic vision.",
+        "photo": "/team/KevinLeon.jpeg",
+        "linkedinUrl": "https://www.linkedin.com/in/kevinleonj/",
+        "linkedinLabel": "linkedin.com/in/kevinleonj"
+      },
+      {
+        "name": "Andrés Ramírez",
+        "role": "Engineering & Design",
+        "bio": "Technology strategist focused on digital growth and transformation for SMEs. Combines technical analysis, software development and AI implementation to turn digital diagnostics into systems and products that generate measurable impact.",
+        "photo": "/team/AndresRamirez.jpg",
+        "linkedinUrl": "",
+        "linkedinLabel": "LinkedIn"
+      }
+    ]
+  },
+  "contact": {
+    "label": "Contact",
+    "heading": "Let's talk about your website",
+    "text": "Tell us about your situation. We analyse your website at no cost and send you an initial diagnosis within 48 hours.",
+    "name": "Name",
+    "namePlaceholder": "Your name",
+    "email": "Email address",
+    "emailPlaceholder": "you@email.com",
+    "message": "Message",
+    "messagePlaceholder": "Tell us about your website, your business and what you want to improve...",
+    "submit": "Send message",
+    "sending": "Sending...",
+    "successTitle": "Message sent. We'll be in touch shortly.",
+    "errorText": "Something went wrong. Please try again or write to us directly at info@limeralda.com.",
+    "nameRequired": "Name is required",
+    "emailRequired": "Email address is required",
+    "emailInvalid": "Please enter a valid email address",
+    "messageRequired": "Message is required"
+  },
+  "footer": {
+    "tagline": "Web audit, redesign and optimisation for businesses in Spain.",
+    "navTitle": "Navigation",
+    "legalTitle": "Legal",
+    "services": "Services",
+    "process": "Process",
+    "team": "Team",
+    "contact": "Contact",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "cookies": "Cookie Settings",
+    "copyright": "© {year} mejoraweb. All rights reserved.",
+    "byline": "mejoraweb by limeralda"
+  },
+  "cookie": {
+    "title": "We use cookies",
+    "text": "We use local storage to save your language and consent preferences. No tracking or advertising cookies. See our",
+    "policyLink": "cookie policy",
+    "reject": "Reject",
+    "minimal": "Necessary only",
+    "acceptAll": "Accept all",
+    "settingsTitle": "Cookie Settings",
+    "currentStatus": "Current status",
+    "statusAccepted": "Accepted",
+    "statusMinimal": "Necessary only",
+    "statusRejected": "Rejected",
+    "storageTitle": "What we store",
+    "storageItems": [
+      { "key": "mejoraweb-language", "label": "Language preference", "note": "Always active" },
+      { "key": "mejoraweb-cookie-consent", "label": "Cookie consent", "note": "Always active" }
+    ],
+    "noTracking": "We do not use analytics or third-party advertising cookies.",
+    "viewPolicy": "View full cookie policy"
+  },
+  "legal": {
+    "privacy": {
+      "title": "Privacy Policy",
+      "sections": [
+        {
+          "heading": "1. Data Controller",
+          "body": "limeralda (hereinafter, \"the Controller\") is responsible for processing personal data collected through mejoraweb.app. Contact: info@limeralda.com."
+        },
+        {
+          "heading": "2. Data We Collect",
+          "body": "We only collect data you voluntarily provide through the contact form: name, email address and message. We do not collect browsing data or install tracking or advertising cookies."
+        },
+        {
+          "heading": "3. Purpose and Legal Basis",
+          "body": "Data is processed to manage your enquiry and stay in touch with you. The legal basis is the Controller's legitimate interest (Art. 6(1)(f) GDPR) in responding to commercial and professional communications."
+        },
+        {
+          "heading": "4. Recipients",
+          "body": "Your data is transmitted to Resend (email processor) and Google Workspace (email hosting), both subject to the European Commission's Standard Contractual Clauses, ensuring GDPR compliance."
+        },
+        {
+          "heading": "5. Data Retention",
+          "body": "Contact form data is retained for a maximum of 12 months from the last communication, after which it is securely deleted."
+        },
+        {
+          "heading": "6. Your Rights",
+          "body": "You have the right to access, rectify, erase, port and object to the processing of your data. To exercise these rights, write to info@limeralda.com. You may also lodge a complaint with the Spanish Data Protection Agency (aepd.es)."
+        },
+        {
+          "heading": "7. Local Storage",
+          "body": "This website uses localStorage to save your language preference (key: mejoraweb-language) and your cookie consent choice (key: mejoraweb-cookie-consent). This data is stored only on your device and is never sent to any server."
+        }
+      ]
+    },
+    "terms": {
+      "title": "Terms of Service",
+      "sections": [
+        {
+          "heading": "1. Scope",
+          "body": "These Terms govern access to and use of mejoraweb.app, a web audit, redesign and optimisation service provided by limeralda, based in Madrid, Spain."
+        },
+        {
+          "heading": "2. Use of Service",
+          "body": "Access to this website is free of charge. Web audit and redesign services are provided on request, following contact via the contact form or email."
+        },
+        {
+          "heading": "3. Intellectual Property",
+          "body": "All content on this website — texts, designs, code and graphics — is the property of limeralda and is protected by Spanish and international intellectual property law. Reproduction without express authorisation is prohibited."
+        },
+        {
+          "heading": "4. Disclaimer of Warranties",
+          "body": "The service is provided \"as is\". limeralda does not guarantee uninterrupted availability of the website or the absence of errors in its content."
+        },
+        {
+          "heading": "5. Limitation of Liability",
+          "body": "limeralda shall not be liable for indirect damages, loss of business or data arising from the use of this website or contracted services, except as required by law."
+        },
+        {
+          "heading": "6. Governing Law",
+          "body": "These Terms are governed by Spanish law. For any dispute, the parties submit to the courts of Madrid, expressly waiving any other jurisdiction that may apply."
+        }
+      ]
+    },
+    "cookies": {
+      "title": "Cookie Policy",
+      "sections": [
+        {
+          "heading": "1. What are cookies?",
+          "body": "Cookies are small files that websites store on your device. This website does not use cookies in the strict sense, but only localStorage — a similar technology that stores data locally in your browser without automatically sending it to the server."
+        },
+        {
+          "heading": "2. What do we store?",
+          "body": "We use two localStorage entries: «mejoraweb-language» to save your language preference (es or en), and «mejoraweb-cookie-consent» to save your consent choice (accepted, minimal or rejected)."
+        },
+        {
+          "heading": "3. No third-party cookies",
+          "body": "We do not install Google Analytics, Meta Pixel or any other advertising or tracking service cookies. The only data that leaves your device is what you voluntarily submit through the contact form."
+        },
+        {
+          "heading": "4. Managing your preferences",
+          "body": "You can change your settings at any time by clicking «Cookie Settings» in the footer. You can also clear local storage from your browser's privacy settings."
+        }
+      ]
+    }
+  }
+}

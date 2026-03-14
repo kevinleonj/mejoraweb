@@ -1,66 +1,111 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import './css/style.css'
 import LiquidEther from './components/LiquidEther/LiquidEther'
+import LegalModal from './components/LegalModal'
+import CookieBanner from './components/CookieBanner'
+import CookieSettingsModal from './components/CookieSettingsModal'
+import ContactForm from './components/ContactForm'
+import ScrollToTop from './components/ScrollToTop'
+import { useLanguage } from './context/LanguageContext'
 
 function App() {
+  const { t, lang, toggleLang } = useLanguage()
+  const [menuOpen, setMenuOpen] = useState(false)
+  const [legalModal, setLegalModal] = useState(null) // null | 'privacy' | 'terms' | 'cookies'
+  const [cookieSettingsOpen, setCookieSettingsOpen] = useState(false)
+  const [activeSection, setActiveSection] = useState('')
+
+  // Smooth scroll to section and close mobile menu
+  function navTo(id) {
+    setMenuOpen(false)
+    const el = document.getElementById(id)
+    if (el) el.scrollIntoView({ behavior: 'smooth' })
+  }
+
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? 'hidden' : ''
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [menuOpen])
+
   useEffect(() => {
     // Scroll-reveal observer
-    const observer = new IntersectionObserver(
+    const revealObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add('visible')
-            observer.unobserve(entry.target)
+            revealObserver.unobserve(entry.target)
           }
         })
       },
-      {
-        threshold: 0.08,
-        rootMargin: '0px 0px -40px 0px'
-      }
+      { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
     )
-
     document.querySelectorAll('[data-animate]').forEach((el) => {
-      observer.observe(el)
+      revealObserver.observe(el)
     })
 
-    // Header border on scroll
+    // Active section observer for nav highlighting
+    const sectionIds = ['servicios', 'proceso', 'equipo', 'contacto']
+    const sectionObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id)
+          }
+        })
+      },
+      { threshold: 0.3 }
+    )
+    sectionIds.forEach((id) => {
+      const el = document.getElementById(id)
+      if (el) sectionObserver.observe(el)
+    })
+
+    // Header scrolled state
     const header = document.querySelector('.header')
-
-    function onScroll() {
-      const scrollY = window.scrollY
-      if (scrollY > 80) {
-        header.style.borderBottomColor = ''
-      } else {
-        header.style.borderBottomColor = 'transparent'
-      }
-    }
-
-    // Throttle scroll events
     let ticking = false
     function handleScroll() {
       if (!ticking) {
         requestAnimationFrame(() => {
-          onScroll()
+          if (window.scrollY > 60) {
+            header.classList.add('header--scrolled')
+          } else {
+            header.classList.remove('header--scrolled')
+          }
           ticking = false
         })
         ticking = true
       }
     }
-
     window.addEventListener('scroll', handleScroll, { passive: true })
-
-    // Initial state
-    onScroll()
+    handleScroll()
 
     return () => {
-      observer.disconnect()
+      revealObserver.disconnect()
+      sectionObserver.disconnect()
       window.removeEventListener('scroll', handleScroll)
     }
   }, [])
 
+  const navLinks = [
+    { id: 'servicios', label: t('header.services') },
+    { id: 'proceso', label: t('header.process') },
+    { id: 'equipo', label: t('header.team') },
+    { id: 'contacto', label: t('header.contact') }
+  ]
+
+  const members = t('team.members')
+  const problemCards = t('problems.cards')
+  const serviceItems = t('services.items')
+  const processSteps = t('process.steps')
+  const year = new Date().getFullYear()
+
   return (
     <>
+      {/* WebGL background */}
       <div
         style={{
           position: 'fixed',
@@ -93,281 +138,347 @@ function App() {
 
       {/* Header */}
       <header className='header' role='banner'>
-        <nav className='header-inner'>
-          <a href='/' className='logo' aria-label='mejoraweb - inicio'>
+        <nav className='header-inner' aria-label='Navegación principal'>
+          <a
+            href='/'
+            className='logo'
+            aria-label='mejoraweb — inicio'
+            onClick={(e) => {
+              e.preventDefault()
+              window.scrollTo({ top: 0, behavior: 'smooth' })
+            }}
+          >
             mejoraweb
           </a>
-          <span className='header-badge'>España</span>
+
+          {/* Desktop nav */}
+          <ul className='nav-links' role='list'>
+            {navLinks.map(({ id, label }) => (
+              <li key={id}>
+                <button
+                  className={`nav-link${activeSection === id ? ' nav-link--active' : ''}`}
+                  onClick={() => navTo(id)}
+                  type='button'
+                >
+                  {label}
+                </button>
+              </li>
+            ))}
+          </ul>
+
+          <div className='header-controls'>
+            {/* Language toggle */}
+            <button
+              className='lang-toggle'
+              onClick={toggleLang}
+              type='button'
+              aria-label={lang === 'es' ? 'Switch to English' : 'Cambiar a español'}
+            >
+              <span className={lang === 'es' ? 'lang-active' : ''}>ES</span>
+              <span className='lang-divider'>|</span>
+              <span className={lang === 'en' ? 'lang-active' : ''}>EN</span>
+            </button>
+
+            {/* CTA button */}
+            <button
+              className='header-cta'
+              onClick={() => navTo('contacto')}
+              type='button'
+            >
+              {t('header.cta')}
+            </button>
+
+            {/* Hamburger */}
+            <button
+              className={`hamburger${menuOpen ? ' hamburger--open' : ''}`}
+              onClick={() => setMenuOpen((v) => !v)}
+              type='button'
+              aria-expanded={menuOpen}
+              aria-label={menuOpen ? t('header.closeMenu') : t('header.openMenu')}
+            >
+              <span className='hamburger-bar' />
+              <span className='hamburger-bar' />
+              <span className='hamburger-bar' />
+            </button>
+          </div>
         </nav>
+
+        {/* Mobile menu */}
+        {menuOpen && (
+          <div className='mobile-menu' role='navigation' aria-label='Menú móvil'>
+            <ul className='mobile-nav-links' role='list'>
+              {navLinks.map(({ id, label }) => (
+                <li key={id}>
+                  <button
+                    className='mobile-nav-link'
+                    onClick={() => navTo(id)}
+                    type='button'
+                  >
+                    {label}
+                  </button>
+                </li>
+              ))}
+            </ul>
+            <div className='mobile-menu-footer'>
+              <button
+                className='lang-toggle'
+                onClick={toggleLang}
+                type='button'
+                aria-label={lang === 'es' ? 'Switch to English' : 'Cambiar a español'}
+              >
+                <span className={lang === 'es' ? 'lang-active' : ''}>ES</span>
+                <span className='lang-divider'>|</span>
+                <span className={lang === 'en' ? 'lang-active' : ''}>EN</span>
+              </button>
+              <button
+                className='header-cta'
+                onClick={() => navTo('contacto')}
+                type='button'
+              >
+                {t('header.cta')}
+              </button>
+            </div>
+          </div>
+        )}
       </header>
 
       <main>
         {/* Hero */}
-        <section className='hero' aria-labelledby='hero-heading'>
+        <section className='hero' id='inicio' aria-labelledby='hero-heading'>
           <div className='container'>
             <p className='hero-kicker' data-animate=''>
-              Auditoría y rediseño web profesional
+              {t('hero.kicker')}
             </p>
             <h1 id='hero-heading' className='hero-heading'>
               <span className='hero-line' data-animate='' data-delay='1'>
-                El 73% de los consumidores
+                {t('hero.line1')}
               </span>
               <span className='hero-line' data-animate='' data-delay='2'>
-                juzga la credibilidad de un negocio
+                {t('hero.line2')}
               </span>
               <span
                 className='hero-line hero-line--accent'
                 data-animate=''
                 data-delay='3'
               >
-                por el diseño de su web
+                {t('hero.line3')}
               </span>
             </h1>
             <p className='hero-sub' data-animate='' data-delay='4'>
-              Analizamos tu web actual. Identificamos cada problema. La
-              reconstruimos con principios de diseño escandinavo para que
-              trabaje por tu negocio, no en su contra.
+              {t('hero.sub')}
             </p>
+            <div className='hero-actions' data-animate='' data-delay='5'>
+              <button className='hero-cta' onClick={() => navTo('contacto')} type='button'>
+                {t('header.cta')}
+                <svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth='2.5' strokeLinecap='round' strokeLinejoin='round' aria-hidden='true'><path d='M5 12h14M12 5l7 7-7 7'/></svg>
+              </button>
+            </div>
           </div>
         </section>
 
-        {/* Problema */}
+        {/* Problems */}
         <section className='section' aria-labelledby='problema-heading'>
           <div className='container'>
             <div className='section-label' data-animate=''>
-              El problema
+              {t('problems.label')}
             </div>
             <h2
               id='problema-heading'
               className='section-heading'
               data-animate=''
             >
-              Tu web trabaja contra ti
+              {t('problems.heading')}
             </h2>
             <p className='section-text' data-animate=''>
-              Cada dia, clientes potenciales buscan tu negocio en Google.
-              Encuentran tu web. Y en menos de tres segundos, deciden si confían
-              en ti o eligen a tu competencia.
+              {t('problems.text')}
             </p>
-
             <div className='grid-problems'>
-              <article className='problem-card' data-animate='' data-delay='1'>
-                <span className='problem-number'>40%</span>
-                <h3 className='problem-title'>Sin versión móvil</h3>
-                <p className='problem-desc'>
-                  Más de la mitad del tráfico web en España viene del móvil. Una
-                  web que no se adapta a pantallas pequeñas pierde la mayoría de
-                  sus visitas antes de cargar.
-                </p>
-              </article>
-              <article className='problem-card' data-animate='' data-delay='2'>
-                <span className='problem-number'>53%</span>
-                <h3 className='problem-title'>Carga lenta</h3>
-                <p className='problem-desc'>
-                  Si tu web tarda más de tres segundos en cargar, más de la
-                  mitad de los visitantes la abandona. Google penaliza las webs
-                  lentas en sus resultados de búsqueda.
-                </p>
-              </article>
-              <article className='problem-card' data-animate='' data-delay='3'>
-                <span className='problem-number'>84%</span>
-                <h3 className='problem-title'>Sin certificado SSL</h3>
-                <p className='problem-desc'>
-                  Los navegadores marcan como "No seguro" las webs sin SSL. El
-                  84% de los usuarios abandona una compra si percibe que el
-                  sitio no es seguro.
-                </p>
-              </article>
-              <article className='problem-card' data-animate='' data-delay='4'>
-                <span className='problem-number'>94%</span>
-                <h3 className='problem-title'>Diseño desactualizado</h3>
-                <p className='problem-desc'>
-                  Las primeras impresiones son casi enteramente de diseño. El
-                  94% de las razones por las que los usuarios desconfian de una
-                  web estan relacionadas con su aspecto visual.
-                </p>
-              </article>
+              {Array.isArray(problemCards) &&
+                problemCards.map((card, i) => (
+                  <article
+                    key={i}
+                    className='problem-card'
+                    data-animate=''
+                    data-delay={String(i + 1)}
+                  >
+                    <span className='problem-number'>{card.stat}</span>
+                    <h3 className='problem-title'>{card.title}</h3>
+                    <p className='problem-desc'>{card.desc}</p>
+                  </article>
+                ))}
             </div>
           </div>
         </section>
 
         <hr className='divider' aria-hidden='true' />
 
-        {/* Servicio */}
-        <section className='section' aria-labelledby='servicio-heading'>
+        {/* Services */}
+        <section
+          className='section'
+          id='servicios'
+          aria-labelledby='servicio-heading'
+        >
           <div className='container'>
             <div className='section-label' data-animate=''>
-              El servicio
+              {t('services.label')}
             </div>
             <h2
               id='servicio-heading'
               className='section-heading'
               data-animate=''
             >
-              Rediseño web integral
+              {t('services.heading')}
             </h2>
             <p className='section-text' data-animate=''>
-              No construimos páginas web. Reconstruimos la presencia digital de
-              tu negocio desde los cimientos.
+              {t('services.text')}
             </p>
-
             <div className='services-grid'>
-              <article className='service-block' data-animate='' data-delay='1'>
-                <h3 className='service-title'>Auditoría técnica completa</h3>
-                <p className='service-desc'>
-                  Analizamos más de 40 puntos técnicos de tu web actual:
-                  rendimiento, seguridad, accesibilidad, SEO, compatibilidad
-                  móvil y experiencia de usuario. El diagnóstico es preciso. Sin
-                  ambigüedades.
-                </p>
-              </article>
-              <article className='service-block' data-animate='' data-delay='2'>
-                <h3 className='service-title'>Diseño funcional escandinavo</h3>
-                <p className='service-desc'>
-                  Aplicamos principios del diseño nórdico: claridad,
-                  funcionalidad y espacio. Cada elemento tiene un propósito. Lo
-                  que no aporta valor al usuario, no existe. El resultado es una
-                  web que comunica confianza desde el primer segundo.
-                </p>
-              </article>
-              <article className='service-block' data-animate='' data-delay='3'>
-                <h3 className='service-title'>Optimizacion para resultados</h3>
-                <p className='service-desc'>
-                  Una web rápida, segura y bien estructurada no es un lujo. Es
-                  el estándar mínimo que Google exige para posicionarte.
-                  Optimizamos para Core Web Vitals, motores de búsqueda clásicos
-                  y los nuevos motores de búsqueda con inteligencia artificial.
-                </p>
-              </article>
+              {Array.isArray(serviceItems) &&
+                serviceItems.map((item, i) => (
+                  <article
+                    key={i}
+                    className='service-block'
+                    data-animate=''
+                    data-delay={String(i + 1)}
+                  >
+                    <h3 className='service-title'>{item.title}</h3>
+                    <p className='service-desc'>{item.desc}</p>
+                  </article>
+                ))}
             </div>
           </div>
         </section>
 
         <hr className='divider' aria-hidden='true' />
 
-        {/* Proceso */}
-        <section className='section' aria-labelledby='proceso-heading'>
+        {/* Process */}
+        <section
+          className='section'
+          id='proceso'
+          aria-labelledby='proceso-heading'
+        >
           <div className='container'>
             <div className='section-label' data-animate=''>
-              El proceso
+              {t('process.label')}
             </div>
             <h2
               id='proceso-heading'
               className='section-heading'
               data-animate=''
             >
-              Cuatro fases. Sin sorpresas.
+              {t('process.heading')}
             </h2>
             <p className='section-text' data-animate=''>
-              Cada proyecto sigue una metodología estructurada. Sabes que ocurre
-              en cada momento.
+              {t('process.text')}
             </p>
-
             <ol className='process-list'>
-              <li className='process-step' data-animate='' data-delay='1'>
-                <span className='step-number'>01</span>
-                <div className='step-content'>
-                  <h3 className='step-title'>Auditoría</h3>
-                  <p className='step-desc'>
-                    Evaluamos tu web actual con herramientas profesionales de
-                    análisis. Identificamos cada problema técnico y de diseño.
-                    Recibes un informe detallado con prioridades claras y
-                    métricas comparativas frente a tu competencia directa.
-                  </p>
-                </div>
-              </li>
-              <li className='process-step' data-animate='' data-delay='2'>
-                <span className='step-number'>02</span>
-                <div className='step-content'>
-                  <h3 className='step-title'>Estrategia</h3>
-                  <p className='step-desc'>
-                    Definimos la arquitectura de información, el contenido y la
-                    experiencia de usuario de tu nueva web. Cada decisión de
-                    diseño esta respaldada por datos de uso real y mejores
-                    prácticas del sector.
-                  </p>
-                </div>
-              </li>
-              <li className='process-step' data-animate='' data-delay='3'>
-                <span className='step-number'>03</span>
-                <div className='step-content'>
-                  <h3 className='step-title'>Diseño y desarrollo</h3>
-                  <p className='step-desc'>
-                    Construimos tu web con tecnología moderna, optimizada para
-                    velocidad de carga y posicionamiento en buscadores. Diseño
-                    responsive que funciona con precisión en cualquier
-                    dispositivo, desde un móvil hasta una pantalla de
-                    escritorio.
-                  </p>
-                </div>
-              </li>
-              <li className='process-step' data-animate='' data-delay='4'>
-                <span className='step-number'>04</span>
-                <div className='step-content'>
-                  <h3 className='step-title'>Lanzamiento</h3>
-                  <p className='step-desc'>
-                    Migramos tu dominio, configuramos la seguridad y
-                    monitorizamos el rendimiento durante las primeras semanas.
-                    Tu nueva web esta lista para trabajar por tu negocio desde
-                    el primer dia.
-                  </p>
-                </div>
-              </li>
+              {Array.isArray(processSteps) &&
+                processSteps.map((step, i) => (
+                  <li
+                    key={i}
+                    className='process-step'
+                    data-animate=''
+                    data-delay={String(i + 1)}
+                  >
+                    <span className='step-number'>{step.number}</span>
+                    <div className='step-content'>
+                      <h3 className='step-title'>{step.title}</h3>
+                      <p className='step-desc'>{step.desc}</p>
+                    </div>
+                  </li>
+                ))}
             </ol>
           </div>
         </section>
 
         <hr className='divider' aria-hidden='true' />
 
-        {/* Equipo */}
-        <section className='section' aria-labelledby='equipo-heading'>
+        {/* Team */}
+        <section
+          className='section'
+          id='equipo'
+          aria-labelledby='equipo-heading'
+        >
           <div className='container'>
             <div className='section-label' data-animate=''>
-              El equipo
+              {t('team.label')}
             </div>
-            <h2 id='equipo-heading' className='section-heading' data-animate=''>
-              Un proyecto del Instituto de Empresa
+            <h2
+              id='equipo-heading'
+              className='section-heading'
+              data-animate=''
+            >
+              {t('team.heading')}
             </h2>
             <p className='section-text' data-animate=''>
-              mejoraweb nace en el Instituto de Empresa, una de las escuelas de
-              negocios más reconocidas de Europa. Combinamos rigor académico con
-              ejecución técnica.
+              {t('team.text')}
             </p>
-
             <div className='team-grid'>
-              <article className='team-member' data-animate='' data-delay='1'>
-                <h3 className='member-name'>Kevin Leon</h3>
-                <p className='member-role'>Ingeniería y diseño</p>
-                <p className='member-bio'>
-                  Ingeniero de software con sólida experiencia en entornos cloud
-                  y proyectos tecnológicos en compañías de alto nivel.
-                  Especialista en arquitectura web, sistemas escalables y
-                  experiencia de usuario. Diseña y despliega soluciones
-                  digitales robustas que combinan rendimiento, usabilidad y
-                  visión estratégica.
-                </p>
-                <a
-                  href='https://www.linkedin.com/in/kevinleonj/'
-                  className='member-link'
-                  target='_blank'
-                  rel='noopener noreferrer'
-                  aria-label='Perfil de LinkedIn de Kevin Leon'
-                >
-                  linkedin.com/in/kevinleonj
-                </a>
-              </article>
-              <article className='team-member' data-animate='' data-delay='2'>
-                <h3 className='member-name'>Andres Ramirez</h3>
-                <p className='member-role'>Estrategia, tecnología y negocio</p>
-                <p className='member-bio'>
-                  Estratega tecnológico con enfoque en crecimiento digital y
-                  transformación para PYMEs. Combina análisis técnico,
-                  desarrollo de software e implementación de IA para convertir
-                  diagnósticos digitales en sistemas y productos que generan
-                  impacto medible. Con experiencia en despliegue de aplicaciones
-                  y optimización basada en datos.
-                </p>
-              </article>
+              {Array.isArray(members) &&
+                members.map((member, i) => (
+                  <article
+                    key={i}
+                    className='team-member'
+                    data-animate=''
+                    data-delay={String(i + 1)}
+                  >
+                    <img
+                      src={member.photo}
+                      alt={member.name}
+                      className='member-photo'
+                      width='72'
+                      height='72'
+                      loading='lazy'
+                    />
+                    <h3 className='member-name'>{member.name}</h3>
+                    <p className='member-role'>{member.role}</p>
+                    <p className='member-bio'>{member.bio}</p>
+                    {member.linkedinUrl !== null && (
+                      <div className='member-link-wrapper'>
+                        <a
+                          href={member.linkedinUrl}
+                          className='member-link'
+                          target='_blank'
+                          rel='noopener noreferrer'
+                          aria-label={`LinkedIn de ${member.name}`}
+                        >
+                          <svg className='linkedin-icon' viewBox='0 0 24 24' fill='currentColor' aria-hidden='true'>
+                            <path d='M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z'/>
+                          </svg>
+                          LinkedIn
+                        </a>
+                      </div>
+                    )}
+                  </article>
+                ))}
+            </div>
+          </div>
+        </section>
+
+        <hr className='divider' aria-hidden='true' />
+
+        {/* Contact */}
+        <section
+          className='section'
+          id='contacto'
+          aria-labelledby='contacto-heading'
+        >
+          <div className='container'>
+            <div className='section-label' data-animate=''>
+              {t('contact.label')}
+            </div>
+            <h2
+              id='contacto-heading'
+              className='section-heading'
+              data-animate=''
+            >
+              {t('contact.heading')}
+            </h2>
+            <p className='section-text' data-animate=''>
+              {t('contact.text')}
+            </p>
+            <div className='contact-card'>
+              <ContactForm key={lang} />
             </div>
           </div>
         </section>
@@ -376,13 +487,101 @@ function App() {
       {/* Footer */}
       <footer className='footer' role='contentinfo'>
         <div className='container'>
-          <div className='footer-inner'>
-            <span className='footer-logo'>mejoraweb</span>
-            <span className='footer-location'>Madrid, España</span>
+          <div className='footer-grid'>
+            {/* Brand column */}
+            <div className='footer-brand'>
+              <span className='footer-logo'>mejoraweb</span>
+              <p className='footer-tagline'>{t('footer.tagline')}</p>
+            </div>
+
+            {/* Nav column */}
+            <div className='footer-col'>
+              <span className='footer-col-title'>{t('footer.navTitle')}</span>
+              <ul className='footer-links' role='list'>
+                {navLinks.map(({ id, label }) => (
+                  <li key={id}>
+                    <button
+                      className='footer-link'
+                      onClick={() => navTo(id)}
+                      type='button'
+                    >
+                      {label}
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Legal column */}
+            <div className='footer-col'>
+              <span className='footer-col-title'>{t('footer.legalTitle')}</span>
+              <ul className='footer-links' role='list'>
+                <li>
+                  <button
+                    className='footer-link'
+                    onClick={() => setLegalModal('privacy')}
+                    type='button'
+                  >
+                    {t('footer.privacy')}
+                  </button>
+                </li>
+                <li>
+                  <button
+                    className='footer-link'
+                    onClick={() => setLegalModal('terms')}
+                    type='button'
+                  >
+                    {t('footer.terms')}
+                  </button>
+                </li>
+                <li>
+                  <button
+                    className='footer-link'
+                    onClick={() => setCookieSettingsOpen(true)}
+                    type='button'
+                  >
+                    {t('footer.cookies')}
+                  </button>
+                </li>
+              </ul>
+            </div>
           </div>
-          <p className='footer-legal'>Un proyecto del Instituto de Empresa.</p>
+
+          {/* Bottom bar */}
+          <div className='footer-bottom'>
+            <span className='footer-copyright'>
+              {t('footer.copyright').replace('{year}', year)}
+            </span>
+            <a
+              href='https://limeralda.com'
+              className='footer-byline'
+              target='_blank'
+              rel='noopener noreferrer'
+            >
+              {t('footer.byline')}
+            </a>
+          </div>
         </div>
       </footer>
+
+      {/* Cookie banner */}
+      <CookieBanner onOpenCookies={() => setCookieSettingsOpen(true)} />
+
+      {/* Cookie settings modal */}
+      {cookieSettingsOpen && (
+        <CookieSettingsModal
+          onClose={() => setCookieSettingsOpen(false)}
+          onOpenPolicy={() => { setCookieSettingsOpen(false); setLegalModal('cookies') }}
+        />
+      )}
+
+      {/* Legal modals */}
+      {legalModal && (
+        <LegalModal type={legalModal} onClose={() => setLegalModal(null)} />
+      )}
+
+      {/* Scroll to top */}
+      <ScrollToTop />
     </>
   )
 }

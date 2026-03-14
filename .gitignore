@@ -22,3 +22,10 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Cloudflare Worker source (deploy manually via CF dashboard)
+worker/
+
+# Local environment variables
+.env
+.env.local
